@@ -1,9 +1,8 @@
 var cheater=(function($){
-    var bonusLevelUp,
-        specialsLevelUp,
+    var LevelUp,
         presTimer,
         pres = 1,
-        delay = 2000;
+        delay = 0;
     var $pres=$("#Pres")
     var autoClick=function(){
         presTimer=setTimeout(function(){
@@ -44,17 +43,14 @@ var cheater=(function($){
     })()
     var handler={
         start:function(){
-            bonusLevelUp=setInterval(function(){
+            LevelUp=setInterval(function(){
                 $("[id^='spec'][onclick],[id^='tblRow'][onclick]").click()
-            },1000)
-            specialsLevelUp=setInterval(function(){
                 $("#TableObjects button").last().click();
             },1000)
-            presTimer=setTimeout(function(){autoClick()},1000)
+            autoClick()
         },
         stop:function(){
-            clearInterval(bonusLevelUp)
-            clearInterval(specialsLevelUp)
+            clearInterval(LevelUp)
             clearTimeout(presTimer)
         }
     }
